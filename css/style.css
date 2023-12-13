@@ -1,0 +1,211 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  --cor-primaria: green;
+  --cor-secundaria:  black;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 16px;
+}
+
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 60px;
+
+}
+/*.header-logo {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}*/
+.header-menu ul {
+  display: flex;
+  list-style: none;
+  gap: 20px;
+}
+
+.header-menu ul li a {
+  text-decoration: none;
+  color: green;
+  font-size: 22px;
+}
+
+.header-menu ul li a:hover {
+  color: var(--cor-secundaria);
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin:auto;
+  bottom: auto;
+  justify-content: center;
+}
+
+.card {
+  --cor-primaria: green;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  width: 33%;
+  max-width: 300px;
+  padding: 0.8rem;
+  justify-content: center;
+}
+
+
+.card:hover {
+  border-color: var(--cor-secundaria);
+   
+}
+.card-img {
+  width: 100%;
+  height: 250px;
+  border-radius: 20px;
+}
+.card-titulo {
+  text-align: center;
+  color: green;
+  justify-content: center;
+}
+
+.card-descricao {
+  text-align: center;
+  font-size: 0.9rem;
+  flex-grow: 1;
+  justify-content: center;
+}
+
+.card-botao {
+  width: 75%;
+  background-color:green;
+  text-decoration: none;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: bold;
+  border: 3px solid green;
+  border-radius: 1rem;
+  padding: 0.9rem;
+  cursor: pointer;
+}
+
+.card-botao:hover {
+  background-color: transparent;
+  color: green;
+}
+
+.change-background {
+  background-color: green;
+}
+
+.change-scale {
+  scale: 1.05;
+}
+
+input:focus {
+  border: 2px solid green;
+  outline: none;
+}
+.footer{
+  padding: 20px;
+}
+.footer .footer-row1 .footer-col1
+ {
+  width: 100%; 
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  background-color: rgba(0, 128, 0, 0.452);
+  padding: 10px;  
+}
+.footer-title {
+  font-size: 22px;
+  font-weight: bold;
+  color: green;
+  text-align: center;
+
+}
+
+.footer .footer-row1 .footer-col1
+ {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  background-color: rgba(0, 128, 0, 0.452);
+  padding: 10px;  
+}
+.footer-title {
+  font-size: 22px;
+  font-weight: bold;
+  color: green;
+  text-align: center;
+
+
+}
+.footer-col1 .contact-endereco,
+.contact-phone,
+.contact-email {
+  font-size: 16px;
+  display: flex;
+  gap: 5px;
+  color:black;
+  text-align: center;
+  justify-content: center;
+   
+}
+ footer .footer-social {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 5px;
+  color: black;
+  justify-content: center;
+ 
+}
+.footer img {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.footer .footer-row1 {
+  padding: 20px 50px;
+  color:black;
+  text-align: center;
+}
+
+
+
+
+
+@media (max-width: 600px) {
+  * {
+    font-size: 22px;
+  }
+
+  .card {
+    width: 80%;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 801px) {
+  * {
+    font-size: 20px;
+  }
+
+  .card {
+    width: 40%;
+  }
+}
+
