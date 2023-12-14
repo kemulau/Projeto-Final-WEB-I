@@ -30,10 +30,10 @@ const criarCards = () => {
   listaProdutos.forEach((element) => {
     let card = `
       <div class="card">
-        <img class="card-img" src="${element.img || './caminho/para/uma/imagem-padrao.jpg'}" />
+        <img class="card-img" src="${element.img}" />
         <h2 class="card-titulo">${element.produto}</h2>
         <p class="card-descricao">${element.descricao}</p>
-        <a class="card-botao comprar" idProduto="${element.id}"> Comprar </a>
+        <a class="card-botao comprar"> Comprar </a>
         <button class="card-botao excluir" idProduto="${element.id}"> Excluir </button>
       </div>
     `;
@@ -50,7 +50,18 @@ const criarCards = () => {
       let produtoID = botaoExcluir.getAttribute("idProduto");
       excluirProduto(produtoID, element);
     });
+
+    let botaoComprar = element.querySelector(".comprar");
+    botaoComprar.addEventListener("click", () => {
+      let produtoID = botaoComprar.getAttribute("idProduto");
+      redirecionarParaComprar(produtoID);
+    });
   });
+};
+
+const redirecionarParaComprar = (produtoID) => {
+  // Você pode redirecionar para comprar.html passando o produtoID como parâmetro
+  window.location.href = `comprar.html?id=${produtoID}`;
 };
 
 const excluirProduto = (idProduto, cardElement) => {
