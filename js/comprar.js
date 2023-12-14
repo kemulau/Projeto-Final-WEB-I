@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function () {
           console.log("Dados do comprador enviados com sucesso:", data);
   
           // Redirecionar para a página de detalhes da compra
-          window.location.href = `detalhesCompra.html?id=${data.id}`;
+          window.location.href = "index.html";
         })
         .catch((error) => {
           console.error("Erro no envio dos dados do comprador:", error);
