@@ -41,7 +41,7 @@ const criarCards = () => {
     container.innerHTML += card;
   });
 
-  // Adicionar event listeners para os botões de excluir
+  // Adiciona o event listeners para os botões de excluir e comprar
   let listaCards = document.querySelectorAll(".card");
 
   listaCards.forEach((element) => {

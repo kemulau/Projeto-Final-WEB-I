@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
         pagamento: pagamento
       };
   
-      // Simular envio para o JSONPlaceholder local
+      //post de compras
       fetch("http://localhost:3000/compras", {
         method: "POST",
         headers: {
@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function () {
         .then((data) => {
           console.log("Dados do comprador enviados com sucesso:", data);
   
-          // Redirecionar para a página de detalhes da compra
+          // Redirecionar para a página inicial após a compra
           window.location.href = "index.html";
         })
         .catch((error) => {
