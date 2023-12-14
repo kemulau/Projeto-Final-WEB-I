@@ -1,120 +1,59 @@
-let form = document.querySelector("form");
+document.addEventListener("DOMContentLoaded", function () {
+  let comprarForm = document.getElementById("comprarForm");
 
-const validarDados = (
-  nome,
-  telefone,
-  email,
-  endereco,
-  cidade,
-  estado,
-  cep,
-  numero,
-  opcProduto,
-  opcPagamento,
-  
+  comprarForm.addEventListener("submit", function (event) {
+      event.preventDefault();
 
-) => {
-  let control = true;
+      // Obter dados do formulário
+      let nome = document.getElementById("nome").value.trim();
+      let telefone = document.getElementById("telefone").value.trim();
+      let email = document.getElementById("email").value.trim();
+      let endereco = document.getElementById("endereco").value.trim();
+      let rua = document.getElementById("rua").value.trim();
+      let cidade = document.getElementById("cidade").value.trim();
+      let estado = document.getElementById("estado").value.trim();
+      let numero = document.getElementById("numero").value.trim();
+      let cep = document.getElementById("cep").value.trim();
+      let produto = document.getElementById("produto").value.trim();
+      let pagamento = document.getElementById("pagamento").value.trim();
 
-  if (nome.value.trim() == "") {
-    nome.classList.add("change-background");
-    control = false;
-  }
+      // Criar objeto com os dados do comprador
+      let comprador = {
+          nome: nome,
+          telefone: telefone,
+          email: email,
+          endereco: endereco,
+          rua: rua,
+          cidade: cidade,
+          estado: estado,
+          numero: numero,
+          cep: cep,
+          produto: produto,
+          pagamento: pagamento
+      };
 
-  if (email.value.trim() == "") {
-    email.classList.add("change-background");
-    control = false;
-  }
-
-  if (telefone.value.trim() == "") {
-    telefone.classList.add("change-background");
-    control = false;
-  }
-  if (endereco.value.trim() == "") {
-    rua.classList.add("change-background");
-    control = false;
-    }
-  if (cidade.value.trim() == "") {
-    cidade.classList.add("change-background");
-    control = false;
-    }
-  if (estado.value.trim() == "") {
-    estado.classList.add("change-background");
-    control = false;
-    }
-  if (cep.value.trim() == "") {
-    cep.classList.add("change-background");
-    control = false;
-    }
-  if (numero.value.trim() == "") {
-    numero.classList.add("change-background");
-    control = false;
-  }
-  if (opcProduto.value.trim() == "") {
-    opcProduto.classList.add("change-background");
-    control = false;
- }
- if (opcPagamento.value.trim() == "") {
-    opcPagamento.classList.add("change-background");
-    control = false;
-  
-    
-  if (control) {
-    alert("Compra Realizada com Sucesso!");
-    window.location.href = "index.html";
-    }
-        
-};
-
-form.addEventListener("submit", (event) => {
-  event.preventDefault();
-
-  let nome = document.querySelector("#nome");
-  let telefone = document.querySelector("#telefone");
-  let email = document.querySelector("#email");
-  let endereco = document.querySelector("#endereco");
-  let opcEndereco= endereco.options[endereco.selectedIndex].value;
-  let cidade = document.querySelector("#cidade");
-  let estado = document.querySelector("#estado");
-  let cep = document.querySelector("#cep");
-  let numero = document.querySelector("#numero");
-  let opcProduto = produto.options[produto.selectedIndex].value;
-  let opcPagamento = pagamento.options[pagamento.selectedIndex].value;
-  
-  if (
-    validarDados(
-    nome,
-    telefone,
-    email,
-    endereco,
-    cidade,
-    estado,
-    cep,
-    numero,
-    opcProduto,
-    opcPagamento,
-    
-      
-    )
-  ) {
-    let adotante = {
-      nome: nome.value.trim(),
-      telefone: telefone.value.trim(),
-      email: email.value.trim(),
-      residencia: residencia.value.trim(),
-      rua: rua.value.trim(),
-      cidade: cidade.value.trim(),
-      estado: estado.value.trim(),
-      cep: cep.value.trim(),
-      numero: numero.value.trim(),
-      comentarios: comentarios.value.trim(),
-      idProduto: sessionStorage.getItem("produtoSelecionado"),
-    };
-
-    let adotanteJSON = JSON.stringify(adotante);
-    console.log(adotanteJSON);
-
-    let adotanteNew = JSON.parse(adotanteJSON);
-    console.log(adotanteNew);
-  }
-});}
+      // Simular envio para o JSONPlaceholder local
+      fetch("http://localhost:3000/compras", {
+          method: "POST",
+          headers: {
+              "Content-Type": "application/json",
+          },
+          body: JSON.stringify(comprador),
+      })
+          .then((response) => {
+              if (!response.ok) {
+                  throw new Error(`Erro no envio: ${response.status}`);
+              }
+              return response.json();
+          })
+          .then((data) => {
+              console.log("Dados do comprador enviados com sucesso:", data);
+              alert("Compra Realizada com Sucesso!");
+              // Redirecionar para a página inicial
+              window.location.href = "index.html";
+          })
+          .catch((error) => {
+              console.error("Erro no envio dos dados do comprador:", error);
+          });
+  });
+});
