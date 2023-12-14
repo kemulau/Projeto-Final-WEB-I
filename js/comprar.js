@@ -17,7 +17,6 @@ document.addEventListener("DOMContentLoaded", function () {
       let produto = document.getElementById("produto").value.trim();
       let pagamento = document.getElementById("pagamento").value.trim();
   
-      // Criar objeto com os dados do comprador
       let comprador = {
         nome: nome,
         telefone: telefone,
@@ -49,7 +48,6 @@ document.addEventListener("DOMContentLoaded", function () {
         .then((data) => {
           console.log("Dados do comprador enviados com sucesso:", data);
   
-          // Redirecionar para a página inicial após a compra
           window.location.href = "index.html";
         })
         .catch((error) => {
