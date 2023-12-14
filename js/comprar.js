@@ -29,10 +29,10 @@ document.addEventListener("DOMContentLoaded", function () {
         numero: numero,
         cep: cep,
         produto: produto,
-        pagamento: pagamento,
+        pagamento: pagamento
       };
   
-      // Enviar dados do comprador para o backend
+      // Simular envio para o JSONPlaceholder local
       fetch("http://localhost:3000/compras", {
         method: "POST",
         headers: {
@@ -48,9 +48,9 @@ document.addEventListener("DOMContentLoaded", function () {
         })
         .then((data) => {
           console.log("Dados do comprador enviados com sucesso:", data);
-          alert("Compra Realizada com Sucesso!");
-          // Redirecionar para a página inicial
-          window.location.href = "index.html";
+  
+          // Redirecionar para a página de detalhes da compra
+          window.location.href = `detalhesCompra.html?id=${data.id}`;
         })
         .catch((error) => {
           console.error("Erro no envio dos dados do comprador:", error);
