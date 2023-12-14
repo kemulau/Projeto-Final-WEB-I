@@ -60,7 +60,6 @@ const criarCards = () => {
 };
 
 const redirecionarParaComprar = (produtoID) => {
-  // Você pode redirecionar para comprar.html passando o produtoID como parâmetro
   window.location.href = `comprar.html?id=${produtoID}`;
 };
 

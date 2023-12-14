@@ -1,22 +1,52 @@
 {
-    "produtos": [
-        {
-            "id": 1,
-            "produto": "Pomada de CBD",
-            "img": "img/card1.jpg",
-            "descricao": "A pomada à base de canabidiol é um produto que se mostra eficaz no tratamento e alívio de sintomas de doenças variadas."
-        },
-        {
-            "id": 2,
-            "produto": "Óleo de CBD 3%",
-            "img": "img/card2.jpg",
-            "descricao": "Ajuda a aliviar as doenças do corpo, mas também os estados emocionais. Usado na massagem, alivia as dores nas articulações, músculos, mas também os problemas de pele."
-        },
-        {
-            "id": 3,
-            "produto": "Óleo de CBD orgânico 5%",
-            "img": "img/card3.jpg",
-            "descricao": "Para produzirmos o óleo de CBD, o próprio CBD é extraído do cânhamo, é purificado e de seguida destilado, antes de ser adicionado ao óleo de transporte, neste caso óleo MCT orgânico."
-        }
-    ]
+  "produtos": [
+    {
+      "id": 1,
+      "produto": "Pomada de CBD",
+      "img": "img/card1.jpg",
+      "descricao": "A pomada à base de canabidiol é um produto que se mostra eficaz no tratamento e alívio de sintomas de doenças variadas."
+    },
+    {
+      "id": 2,
+      "produto": "Óleo de CBD 3%",
+      "img": "img/card2.jpg",
+      "descricao": "Ajuda a aliviar as doenças do corpo, mas também os estados emocionais. Usado na massagem, alivia as dores nas articulações, músculos, mas também os problemas de pele."
+    },
+    {
+      "id": 3,
+      "produto": "Óleo de CBD orgânico 5%",
+      "img": "img/card3.jpg",
+      "descricao": "Para produzirmos o óleo de CBD, o próprio CBD é extraído do cânhamo, é purificado e de seguida destilado, antes de ser adicionado ao óleo de transporte, neste caso óleo MCT orgânico."
+    }
+  ],
+  "compras": [
+    {
+      "nome": "hgfd",
+      "telefone": "",
+      "email": "",
+      "endereco": "rua",
+      "rua": "fghj",
+      "cidade": "",
+      "estado": "",
+      "numero": "",
+      "cep": "ewgvg",
+      "produto": "",
+      "pagamento": "cartao de credito",
+      "id": 1
+    },
+    {
+      "nome": "dffddd",
+      "telefone": "2122",
+      "email": "",
+      "endereco": "avenida",
+      "rua": "fghj",
+      "cidade": "ghjmfghfghj",
+      "estado": "hvtrgr",
+      "numero": "5415124",
+      "cep": "dddd",
+      "produto": "",
+      "pagamento": "",
+      "id": 2
+    }
+  ]
 }
