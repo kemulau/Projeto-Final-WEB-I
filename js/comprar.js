@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
     comprarForm.addEventListener("submit", function (event) {
       event.preventDefault();
   
-      // Obter dados do formulário
+      // Obtém dados do formulário
       let nome = document.getElementById("nome").value.trim();
       let telefone = document.getElementById("telefone").value.trim();
       let email = document.getElementById("email").value.trim();
