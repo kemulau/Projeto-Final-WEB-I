@@ -16,7 +16,6 @@ const carregarProdutos = () => {
         listaProdutos = data;
         criarCards();
       } else {
-        console.error("Resposta inválida da URL de produtos:", data);
       }
     })
     .catch((error) => {

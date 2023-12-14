@@ -16,10 +16,10 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function exibirDetalhesCompras(compras) {
-  // Seleciona o elemento em que os detalhes das compras serão exibidos
+  // Seleciona o elemento em que os detalhes das compras serão exibidos no html
   const detalhesComprasElement = document.getElementById("detalhesCompras");
 
-  // Itera sobre todas as compras e cria elementos para cada uma
+  // Itera sobre todas as compras e cria elementos html para cada uma
   compras.forEach((compra) => {
     const detalhesCompraHTML = `
       <div class="detalhes-compra">
@@ -32,7 +32,6 @@ function exibirDetalhesCompras(compras) {
         <p><strong>Endereço:</strong> ${compra.endereco}, ${compra.rua}, ${compra.cidade}, ${compra.estado}, ${compra.numero}, ${compra.cep}</p>
       </div>
     `;
-
     // Adiciona os detalhes da compra ao elemento
     detalhesComprasElement.innerHTML += detalhesCompraHTML;
   });
