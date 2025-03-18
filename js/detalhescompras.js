@@ -1,27 +1,30 @@
-document.addEventListener("DOMContentLoaded", function () {
-  // obtém todas as compras enviadas
-  fetch("http://localhost:3000/compras")
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error(`Erro ao obter detalhes de todas as compras: ${response.status}`);
-      }
-      return response.json();
-    })
-    .then((compras) => {
-      exibirDetalhesCompras(compras);
-    })
-    .catch((error) => {
-      console.error("Erro ao obter detalhes de todas as compras:", error);
-    });
-});
+document.addEventListener("DOMContentLoaded", carregarCompras);
+
+async function carregarCompras() {
+    try {
+        const response = await fetch("http://localhost:3000/compras");
+        if (!response.ok) {
+            throw new Error(`Erro ao obter detalhes de todas as compras: ${response.status}`);
+        }
+        const compras = await response.json();
+        exibirDetalhesCompras(compras);
+    } catch (error) {
+        console.error("Erro ao obter detalhes de todas as compras:", error);
+    }
+}
 
 function exibirDetalhesCompras(compras) {
-  // Seleciona o elemento em que os detalhes das compras serão exibidos no html
-  const detalhesComprasElement = document.getElementById("detalhesCompras");
+    const detalhesComprasElement = document.getElementById("detalhesCompras");
+    detalhesComprasElement.innerHTML = ""; // Limpa antes de adicionar novos elementos
+    
+    compras.forEach((compra) => {
+        const detalhesCompraHTML = criarDetalhesCompraHTML(compra);
+        detalhesComprasElement.innerHTML += detalhesCompraHTML;
+    });
+}
 
-  // Itera sobre todas as compras e cria elementos html para cada uma
-  compras.forEach((compra) => {
-    const detalhesCompraHTML = `
+function criarDetalhesCompraHTML(compra) {
+    return `
       <div class="detalhes-compra">
         <p><strong>ID da Compra:</strong> ${compra.id}</p>
         <p><strong>Nome:</strong> ${compra.nome}</p>
@@ -32,7 +35,4 @@ function exibirDetalhesCompras(compras) {
         <p><strong>Endereço:</strong> ${compra.endereco}, ${compra.rua}, ${compra.cidade}, ${compra.estado}, ${compra.numero}, ${compra.cep}</p>
       </div>
     `;
-    // Adiciona os detalhes da compra ao elemento
-    detalhesComprasElement.innerHTML += detalhesCompraHTML;
-  });
 }
