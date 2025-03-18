@@ -1,60 +1,55 @@
 let listaProdutos = [];
 
-const carregarProdutos = () => {
+const carregarProdutos = async () => {
   const urlProdutos = "http://localhost:3000/produtos";
 
-  fetch(urlProdutos)
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error(`Erro ao carregar produtos: ${response.status}`);
-      }
-      return response.json();
-    })
-    .then((data) => {
-      if (Array.isArray(data)) {
-        console.log("Produtos carregados com sucesso:", data);
-        listaProdutos = data;
-        criarCards();
-      } else {
-      }
-    })
-    .catch((error) => {
-      console.error("Erro ao carregar produtos:", error);
-    });
+  try {
+    const response = await fetch(urlProdutos);
+    if (!response.ok) {
+      throw new Error(`Erro ao carregar produtos: ${response.status}`);
+    }
+    const data = await response.json();
+    
+    if (Array.isArray(data)) {
+      console.log("Produtos carregados com sucesso:", data);
+      listaProdutos = data;
+      renderizarCards();
+    }
+  } catch (error) {
+    console.error("Erro ao carregar produtos:", error);
+  }
 };
 
-const criarCards = () => {
-  let container = document.querySelector(".container");
+const criarCard = (produto) => {
+  const card = document.createElement("div");
+  card.classList.add("card");
+  card.innerHTML = `
+    <img class="card-img" src="${produto.img}" />
+    <h2 class="card-titulo">${produto.produto}</h2>
+    <p class="card-descricao">${produto.descricao}</p>
+    <a class="card-botao comprar" idProduto="${produto.id}"> Comprar </a>
+    <button class="card-botao excluir" idProduto="${produto.id}"> Excluir </button>
+  `;
 
-  listaProdutos.forEach((element) => {
-    let card = `
-      <div class="card">
-        <img class="card-img" src="${element.img}" />
-        <h2 class="card-titulo">${element.produto}</h2>
-        <p class="card-descricao">${element.descricao}</p>
-        <a class="card-botao comprar"> Comprar </a>
-        <button class="card-botao excluir" idProduto="${element.id}"> Excluir </button>
-      </div>
-    `;
+  adicionarEventosCard(card, produto.id);
+  return card;
+};
 
-    container.innerHTML += card;
-  });
+const adicionarEventosCard = (card, produtoID) => {
+  const botaoExcluir = card.querySelector(".excluir");
+  botaoExcluir.addEventListener("click", () => excluirProduto(produtoID, card));
 
-  // Adiciona o event listeners para os botões de excluir e comprar
-  let listaCards = document.querySelectorAll(".card");
+  const botaoComprar = card.querySelector(".comprar");
+  botaoComprar.addEventListener("click", () => redirecionarParaComprar(produtoID));
+};
 
-  listaCards.forEach((element) => {
-    let botaoExcluir = element.querySelector(".excluir");
-    botaoExcluir.addEventListener("click", () => {
-      let produtoID = botaoExcluir.getAttribute("idProduto");
-      excluirProduto(produtoID, element);
-    });
+const renderizarCards = () => {
+  const container = document.querySelector(".container");
+  container.innerHTML = ""; // Limpa o container antes de renderizar
 
-    let botaoComprar = element.querySelector(".comprar");
-    botaoComprar.addEventListener("click", () => {
-      let produtoID = botaoComprar.getAttribute("idProduto");
-      redirecionarParaComprar(produtoID);
-    });
+  listaProdutos.forEach((produto) => {
+    const card = criarCard(produto);
+    container.appendChild(card);
   });
 };
 
@@ -62,27 +57,20 @@ const redirecionarParaComprar = (produtoID) => {
   window.location.href = `comprar.html?id=${produtoID}`;
 };
 
-const excluirProduto = (idProduto, cardElement) => {
+const excluirProduto = async (idProduto, cardElement) => {
   const urlExclusao = `http://localhost:3000/produtos/${idProduto}`;
 
-  fetch(urlExclusao, {
-    method: "DELETE",
-  })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error(`Erro na exclusão: ${response.status}`);
-      }
-      return response.json();
-    })
-    .then((data) => {
-      console.log("Produto excluído com sucesso:", data);
-      cardElement.remove();
-    })
-    .catch((error) => {
-      console.error("Erro ao excluir produto:", error);
-    });
+  try {
+    const response = await fetch(urlExclusao, { method: "DELETE" });
+    if (!response.ok) {
+      throw new Error(`Erro na exclusão: ${response.status}`);
+    }
+    const data = await response.json();
+    console.log("Produto excluído com sucesso:", data);
+    cardElement.remove();
+  } catch (error) {
+    console.error("Erro ao excluir produto:", error);
+  }
 };
 
-document.addEventListener("DOMContentLoaded", function () {
-  carregarProdutos();
-});
+document.addEventListener("DOMContentLoaded", carregarProdutos);
